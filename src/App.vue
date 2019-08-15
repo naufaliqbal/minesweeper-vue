@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import GridSizeDropdown from './components/GridSizeDropdown';
-import MainGrid from './components/MainGrid';
+import GridSizeDropdown from "./components/GridSizeDropdown";
+import MainGrid from "./components/MainGrid";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     GridSizeDropdown,
     MainGrid

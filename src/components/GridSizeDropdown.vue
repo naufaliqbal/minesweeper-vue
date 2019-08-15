@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 
-const gsd = 'gridSizeDropdown';
+const gsd = "gridSizeDropdown";
 export default {
   computed: {
-    ...mapGetters(gsd, ['buttonText', 'sizeLists'])
+    ...mapGetters(gsd, ["buttonText", "sizeLists"])
   },
-  methods: mapActions(gsd, ['setGridSize'])
+  methods: mapActions(gsd, ["setGridSize"])
 };
 </script>

@@ -1,5 +1,5 @@
 const state = {
-    buttonText: '',
+    buttonText: "",
     sizes: [8, 10, 12],
     isSelected: false,
     gridSize: 0
@@ -12,7 +12,7 @@ const getters = {
         if (state.isSelected) {
             return state.buttonText;
         }
-        return state.sizes[0] + ' x ' + state.sizes[0];
+        return state.sizes[0] + " x " + state.sizes[0];
     },
     gridSize(state) {
         if (state.isSelected) {
@@ -24,15 +24,15 @@ const getters = {
 const actions = {
     setGridSize({ commit }, size) {
         setTimeout(() => {
-            commit('changeButtonTitle', size);
-            commit('changeGridSize', size);
-            commit('changeIsSelected');
+            commit("changeButtonTitle", size);
+            commit("changeGridSize", size);
+            commit("changeIsSelected");
         }, 200);
     }
 };
 const mutations = {
     changeButtonTitle(state, size) {
-        state.buttonText = size + ' x ' + size;
+        state.buttonText = size + " x " + size;
     },
     changeGridSize(state, size) {
         state.gridSize = size;
