@@ -1,32 +1,39 @@
 <template>
-  <v-container class="grey lighten-5 ">
-    <v-row no-gutters v-for="r in gridSize" :key="r" justify="center">
-      <!-- <template v-for="n in 4">
-        <v-col :key="n">
-          <v-card class="pa-2" outlined tile>Column</v-card>
-        </v-col>
-        <v-responsive v-if="n === 2" :key="`width-${n}`" width="100%"></v-responsive>
-      </template> -->
-      <template v-for="c in gridSize">
-          <v-col :key="c">
-              <v-card class="pa-2" height="2rem" width="2rem" elevation="3" outlined>&nbsp;</v-card>
+  <v-container class="grey lighten-5">
+    <v-row no-gutters v-for="(r, r_idx) in gridSize" :key="r" :data-index="r_idx" justify="center">
+      <template v-for="(c, c_idx) in gridSize">
+        <v-hover v-slot:default="{ hover }" :key="c">
+          <v-col :data-index="c_idx" @click="openCol({row: r_idx, col:c_idx})">
+            <v-card :class="{'on-hover': hover }" elevation="4" height="2rem" width="2rem" outlined></v-card>
           </v-col>
+        </v-hover>
       </template>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
-    computed: mapGetters("gridSizeDropdown", [
-        "gridSize"
-    ])
+  computed: mapGetters({
+    gridSize: "gridSizeDropdown/gridSize",
+    getMinesPattern: "mainGrid/getMinesPattern"
+  }),
+  methods: {
+    ...mapActions("mainGrid", ["openCol", "createMinesPattern"])
+  },
+  mounted() {
+    this.createMinesPattern();
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .col {
-    flex-grow: 0 !important;
+  flex-grow: 0 !important;
+}
+.on-hover {
+  background-color: rgba(0, 0, 0, 0.01) !important;
+  cursor: pointer;
 }
 </style>
