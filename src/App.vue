@@ -15,18 +15,21 @@
     </v-app-bar>
 
     <v-content class="my-5">
-      <GridSizeDropdown/>
+      <grid-size-dropdown/>
+      <main-grid/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import GridSizeDropdown from "./components/GridSizeDropdown";
+import GridSizeDropdown from './components/GridSizeDropdown';
+import MainGrid from './components/MainGrid';
 
 export default {
   name: 'App',
   components: {
-    GridSizeDropdown
+    GridSizeDropdown,
+    MainGrid
   }
 };
 </script>

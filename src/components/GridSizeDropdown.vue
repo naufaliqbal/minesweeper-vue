@@ -1,17 +1,17 @@
 <template>
-  <div class="text-center">
-    <span class="font-weight-light mx-5">Select Grid Size</span>
-    <v-menu bottom origin="top center" transition="scale-transition">
+  <div class="text-center my-5">
+    <span class="font-weight-light mx-5">Select Grid Size:</span>
+    <v-menu bottom origin="top center" transition="scale-transition" :offset-y="true">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on" v-text="sizeNotation"></v-btn>
+        <v-btn color="primary" dark v-on="on" v-text="buttonText"></v-btn>
       </template>
       <v-list>
         <v-list-item
-          v-for="(list, index) in sizeLists"
+          v-for="(size, index) in sizeLists"
           :key="index"
-          @click="changeButtonText(list.title)"
+          @click="setGridSize(size)"
         >
-          <v-list-item-title>{{ list.title }}</v-list-item-title>
+          <v-list-item-title>{{ size + " x " + size }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters } from 'vuex';
 
-const gsd = "gridSizeDropdown";
+const gsd = 'gridSizeDropdown';
 export default {
   computed: {
-    ...mapGetters(gsd, ["sizeNotation", "sizeLists"])
+    ...mapGetters(gsd, ['buttonText', 'sizeLists'])
   },
-  methods: mapActions(gsd, ["changeButtonText"])
+  methods: mapActions(gsd, ['setGridSize'])
 };
 </script>

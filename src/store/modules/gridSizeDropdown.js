@@ -1,38 +1,50 @@
 const state = {
-    buttonText: "",
-    items: [
-        { title: "16 x 16" },
-        { title: "32 x 32" },
-        { title: "48 x 48" },
-    ],
-    sizeSelected: false
-}
+    buttonText: '',
+    sizes: [8, 10, 12],
+    isSelected: false,
+    gridSize: 0
+};
 const getters = {
-    sizeNotation(state) {
-        if (state.sizeSelected) {
-            return state.buttonText
-        }
-        return state.items[0].title
-    },
     sizeLists(state) {
-        return state.items
-    }
-}
+        return state.sizes;
+    },
+    buttonText(state) {
+        if (state.isSelected) {
+            return state.buttonText;
+        }
+        return state.sizes[0] + ' x ' + state.sizes[0];
+    },
+    gridSize(state) {
+        if (state.isSelected) {
+            return state.gridSize;
+        }
+        return state.sizes[0];
+    },
+};
 const actions = {
-    changeButtonText({ commit }, text) {
-        commit("changeButtonText", text)
+    setGridSize({ commit }, size) {
+        setTimeout(() => {
+            commit('changeButtonTitle', size);
+            commit('changeGridSize', size);
+            commit('changeIsSelected');
+        }, 200);
     }
-}
+};
 const mutations = {
-    changeButtonText(state, text) {
-        state.buttonText = text
-        state.sizeSelected = true
+    changeButtonTitle(state, size) {
+        state.buttonText = size + ' x ' + size;
+    },
+    changeGridSize(state, size) {
+        state.gridSize = size;
+    },
+    changeIsSelected(state) {
+        state.isSelected = true;
     }
-}
+};
 export default {
     namespaced: true,
     state,
     getters,
     actions,
     mutations
-}
+};
