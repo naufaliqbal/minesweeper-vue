@@ -20,9 +20,9 @@ export default {
     getMinesPattern: "mainGrid/getMinesPattern"
   }),
   methods: {
-    ...mapActions("mainGrid", ["openCol", "createMinesPattern"])
+    ...mapActions("mainGrid", ["openCol", "createMinesPattern", "modifyMinesPattern"])
   },
-  mounted() {
+  beforeMount() {
     this.createMinesPattern();
   }
 };

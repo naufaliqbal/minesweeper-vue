@@ -9,7 +9,7 @@
         <v-list-item
           v-for="(size, index) in sizeLists"
           :key="index"
-          @click="setGridSize(size)"
+          @click="createMinesPattern(size), setGridSize(size)"
         >
           <v-list-item-title>{{ size + " x " + size }}</v-list-item-title>
         </v-list-item>
@@ -20,12 +20,13 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-
-const gsd = "gridSizeDropdown";
 export default {
   computed: {
-    ...mapGetters(gsd, ["buttonText", "sizeLists"])
+    ...mapGetters("gridSizeDropdown", ["buttonText", "sizeLists"])
   },
-  methods: mapActions(gsd, ["setGridSize"])
+  methods: {
+    ...mapActions("gridSizeDropdown", ["setGridSize"]),
+    ...mapActions("mainGrid", ["createMinesPattern"])
+  }
 };
 </script>
