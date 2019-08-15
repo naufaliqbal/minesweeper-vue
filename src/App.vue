@@ -27,9 +27,6 @@ export default {
   name: 'App',
   components: {
     GridSizeDropdown
-  },
-  data: () => ({
-    //
-  }),
+  }
 };
 </script>
