@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import gridSizeDropdown from "./modules/gridSizeDropdown";
-import mainGrid from "./modules/mainGrid";
+import gridPattern from "./modules/gridPattern";
+import gridSquare from "./modules/gridSquare";
 
 Vue.use(Vuex);
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
   strict: debug,
   modules: {
     gridSizeDropdown,
-    mainGrid
+    gridPattern,
+    gridSquare
   }
 });

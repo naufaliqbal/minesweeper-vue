@@ -1,10 +1,12 @@
 <template>
   <v-container class="grey lighten-5">
-    <v-row no-gutters v-for="(r, r_idx) in gridSize" :key="r" :data-index="r_idx" justify="center">
-      <template v-for="(c, c_idx) in gridSize">
-        <v-hover v-slot:default="{ hover }" :key="c">
-          <v-col :data-index="c_idx" @click="openCol({row: r_idx, col:c_idx})">
-            <v-card :class="{'on-hover': hover }" elevation="4" height="2rem" width="2rem" outlined></v-card>
+    <v-row no-gutters v-for="(row, row_idx) in getMinesPattern" :key="row_idx" justify="center">
+      <template v-for="(col, col_idx) in row">
+        <v-hover v-slot:default="{ hover }" :key="col_idx">
+          <v-col @click.left="openSquare({row: row_idx, col: col_idx})">
+            <v-card :class="{'on-hover': hover }" elevation="4" height="2rem" width="2rem" outlined>
+              <span v-if="col.show">{{col.data}}</span>
+            </v-card>
           </v-col>
         </v-hover>
       </template>
@@ -15,12 +17,17 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
-  computed: mapGetters({
-    gridSize: "gridSizeDropdown/gridSize",
-    getMinesPattern: "mainGrid/getMinesPattern"
-  }),
+  computed: {
+    ...mapGetters({
+      gridSize: "gridSizeDropdown/gridSize",
+      getMinesPattern: "gridPattern/getMinesPattern"
+    })
+  },
   methods: {
-    ...mapActions("mainGrid", ["openCol", "createMinesPattern", "modifyMinesPattern"])
+    ...mapActions({
+      createMinesPattern: "gridPattern/createMinesPattern",
+      openSquare: "gridSquare/openSquare"
+    })
   },
   beforeMount() {
     this.createMinesPattern();

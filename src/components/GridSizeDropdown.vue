@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     ...mapActions("gridSizeDropdown", ["setGridSize"]),
-    ...mapActions("mainGrid", ["createMinesPattern"])
+    ...mapActions("gridPattern", ["createMinesPattern"])
   }
 };
 </script>
