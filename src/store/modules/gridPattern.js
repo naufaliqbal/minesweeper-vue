@@ -21,24 +21,26 @@ const actions = {
                 });
             minesPattern.push(subPattern);
         }
-        console.log(minesPattern)
         commit("setMinesPattern", minesPattern);
     },
     async createMinesSubPattern({ state }, { gridSize, rowIdx, minesPattern }) {
-        let temp = new Array();
+        let subPattern = new Array();
         for (let colIdx = 0; colIdx < gridSize; colIdx++) {
             // get random number
             let random = Math.floor(Math.random() * state.dataSource.length);
             let source = state.dataSource[random];
 
-            // change current row value
-            let prev = temp[colIdx - 1];
+            // change inserted data based on previous inserted data or vice versa
+            // if previous data value is "X" or "bomb", add the inserted data
+            // if inserted data is number and previous data is "X", add previous data
+            let prev = subPattern[colIdx - 1];
             if (prev) {
                 let prevData = prev.data
-                if (typeof source === "string" && typeof prevData === "number") temp[colIdx - 1].data = prevData + 1
+                if (typeof source === "string" && typeof prevData === "number") subPattern[colIdx - 1].data = prevData + 1
                 if (typeof source === "number" && typeof prevData == "string") source = source + 1;
             }
 
+            // same method, but for previous row
             if (rowIdx > 0) {
                 let prevUpperLeft = minesPattern[rowIdx - 1][colIdx - 1];
                 let prevUpperRight = minesPattern[rowIdx - 1][colIdx + 1];
@@ -63,13 +65,13 @@ const actions = {
                         : typeof prevUpperCenterData === "string" ? source += 1 : source
                 }
             }
-            temp.push({
+            subPattern.push({
                 data: source,
                 show: false,
-                square_idx: (rowIdx * gridSize) + colIdx
+                bomb: typeof source === "string"  
             });
         }
-        return temp;
+        return subPattern;
     }
 };
 const mutations = {
