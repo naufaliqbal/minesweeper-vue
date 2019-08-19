@@ -3,19 +3,21 @@
     <v-row no-gutters v-for="(row, row_idx) in getMinesPattern" :key="row_idx" justify="center">
       <template v-for="(col, col_idx) in row">
         <v-hover v-slot:default="{ hover }" :key="col_idx">
-          <v-col 
+          <v-col
             @click.left.once="openSquare({row: row_idx, col: col_idx})"
-            @click.right.prevent="flagSquare({row: row_idx, col: col_idx})">
+            @click.right.prevent="flagSquare({row: row_idx, col: col_idx})"
+          >
             <v-card
               :class="[{'on-hover': hover, 'opened': col.show, 'bomb':col.bomb && col.show}, 'square-card', 'flex-center']"
               elevation="4"
               outlined
             >
               <div v-if="col.show">
-                <v-img v-if="col.bomb" alt="bomb" :src="bombIcon" class="square-bomb"></v-img>
-                <span v-else class="font-weight-bold">
-                  {{ col.data | numberFilter }}
-                </span>
+                <v-img v-if="col.bomb" alt="bomb" :src="bombIcon" class="square-icon"></v-img>
+                <span v-else class="font-weight-bold">{{ col.data | numberFilter }}</span>
+              </div>
+              <div v-else>
+                <v-img v-if="col.flagged" alt="flag" :src="flagIcon" class="square-icon"></v-img>
               </div>
             </v-card>
           </v-col>
@@ -34,16 +36,15 @@ export default {
   computed: {
     ...mapGetters({
       gridSize: "gridSizeDropdown/gridSize",
-      getMinesPattern: "gridPattern/getMinesPattern",
-      bombIcon: "gridSquare/bombIcon"
-    })
+      getMinesPattern: "gridPattern/getMinesPattern"
+    }),
+    ...mapGetters("gridSquare", ["bombIcon", "flagIcon"])
   },
   methods: {
     ...mapActions({
-      createMinesPattern: "gridPattern/createMinesPattern",
-      openSquare: "gridSquare/openSquare",
-      flagSquare: "gridSquare/flagSquare"
-    })
+      createMinesPattern: "gridPattern/createMinesPattern"
+    }),
+    ...mapActions("gridSquare", ["openSquare", "flagSquare"])
   },
   filters: {
     numberFilter: value => {
@@ -57,11 +58,10 @@ export default {
 <style lang="scss" scoped>
 $shade-color: rgba(0, 0, 0, 0.05);
 $red: #f73030;
-@mixin background-color($bomb:false) {
+@mixin background-color($bomb: false) {
   @if $bomb {
     background-color: $red !important;
-  }
-  @else {
+  } @else {
     background-color: $shade-color !important;
   }
 }
@@ -77,7 +77,7 @@ $red: #f73030;
   height: 2rem;
   width: 2rem;
 }
-.square-bomb {
+.square-icon {
   height: 1.3rem;
   width: 1.3rem;
 }

@@ -68,7 +68,8 @@ const actions = {
             subPattern.push({
                 data: source,
                 show: false,
-                bomb: typeof source === "string"  
+                bomb: typeof source === "string" ,
+                flagged: false 
             });
         }
         return subPattern;
