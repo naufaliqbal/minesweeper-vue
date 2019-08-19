@@ -14,9 +14,13 @@ const getters = {
     }
 }
 const actions = {
-    openSquare({ getters, commit }, { row, col }) {
+    openSquare({ getters, commit, rootState }, { row, col }) {
         let squareTarget = getters.pattern[row][col];
         commit("changeSquareShow", squareTarget);
+
+        if (squareTarget.bomb) {
+            commit("endGame", rootState)
+        }
     },
     flagSquare({ getters, commit }, { row, col }) {
         let squareTarget = getters.pattern[row][col];
@@ -29,6 +33,9 @@ const mutations =  {
     },
     changeSquareFlagged(_, squareTarget) {
         squareTarget.flagged = !squareTarget.flagged;
+    },
+    endGame(_, rootState) {
+        rootState.mainGame.lose = true
     }
 };
 

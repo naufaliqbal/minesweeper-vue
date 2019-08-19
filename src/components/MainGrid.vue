@@ -4,7 +4,7 @@
       <template v-for="(col, col_idx) in row">
         <v-hover v-slot:default="{ hover }" :key="col_idx">
           <v-col
-            @click.left.once="openSquare({row: row_idx, col: col_idx})"
+            @click.left.prevent="openSquare({row: row_idx, col: col_idx})"
             @click.right.prevent="flagSquare({row: row_idx, col: col_idx})"
           >
             <v-card
@@ -70,7 +70,7 @@ $red: #f73030;
   flex-grow: 0 !important;
 }
 .on-hover {
-  background-color: $shade-color;
+  background-color: $shade-color !important;
   cursor: pointer;
 }
 .square-card {

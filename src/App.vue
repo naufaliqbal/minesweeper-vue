@@ -11,12 +11,13 @@
         target="_blank"
       >
         <span class="mr-2">Latest Release</span>
-      </v-btn> -->
+      </v-btn>-->
     </v-app-bar>
 
     <v-content class="my-5">
-      <grid-size-dropdown/>
-      <main-grid/>
+      <grid-size-dropdown />
+      <main-grid />
+      <game-dialog />
     </v-content>
   </v-app>
 </template>
@@ -24,12 +25,14 @@
 <script>
 import GridSizeDropdown from "./components/GridSizeDropdown";
 import MainGrid from "./components/MainGrid";
+import GameDialog from "./components/GameDialog";
 
 export default {
   name: "App",
   components: {
     GridSizeDropdown,
-    MainGrid
+    MainGrid,
+    GameDialog
   }
 };
 </script>
