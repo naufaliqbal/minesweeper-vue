@@ -35,8 +35,8 @@ const actions = {
             // if inserted data is number and previous data is "X", add previous data
             let prev = subPattern[colIdx - 1];
             if (prev) {
-                let prevData = prev.data
-                if (typeof source === "string" && typeof prevData === "number") subPattern[colIdx - 1].data = prevData + 1
+                let prevData = prev.data;
+                if (typeof source === "string" && typeof prevData === "number") subPattern[colIdx - 1].data = prevData + 1;
                 if (typeof source === "number" && typeof prevData == "string") source = source + 1;
             }
 
@@ -50,19 +50,19 @@ const actions = {
                     let prevUpperLeftData = prevUpperLeft.data;
                     typeof source === "string"
                         ? typeof prevUpperLeftData === "number" ? minesPattern[rowIdx - 1][colIdx - 1].data = prevUpperLeftData + 1 : prevUpperLeftData
-                        : typeof prevUpperLeftData === "string" ? source += 1 : source
+                        : typeof prevUpperLeftData === "string" ? source += 1 : source;
                 }
                 if (prevUpperRight) {
                     let prevUpperRightData = prevUpperRight.data;
                     typeof source === "string"
                         ? typeof prevUpperRightData === "number" ? minesPattern[rowIdx - 1][colIdx + 1].data = prevUpperRightData + 1 : prevUpperRightData
-                        : typeof prevUpperRightData === "string" ? source += 1 : source
+                        : typeof prevUpperRightData === "string" ? source += 1 : source;
                 }
                 if (prevUpperCenter) {
                     let prevUpperCenterData = prevUpperCenter.data;
                     typeof source === "string"
                         ? typeof prevUpperCenterData === "number" ? minesPattern[rowIdx - 1][colIdx].data = prevUpperCenterData + 1 : prevUpperCenterData
-                        : typeof prevUpperCenterData === "string" ? source += 1 : source
+                        : typeof prevUpperCenterData === "string" ? source += 1 : source;
                 }
             }
             subPattern.push({
