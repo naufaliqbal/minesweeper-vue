@@ -19,6 +19,7 @@ const actions = {
 const mutations = {
     restartGame(state, rootState) {
         state.win = false;
+        state.lose = false;
     }
 };
 export default {
