@@ -35,7 +35,9 @@ const actions = {
             let source = state.dataSource[random];
 
             // count the mines
-            if(typeof source === "string") commit("countMines")
+            if(typeof source === "string") {
+                commit("countMines")
+            }
 
             // change inserted data based on previous inserted data or vice versa
             // if previous data value is "X" or "bomb", add the inserted data

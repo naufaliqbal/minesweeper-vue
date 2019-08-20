@@ -24,7 +24,9 @@
         </v-hover>
       </template>
     </v-row>
-    <span>{{totalMines}}</span>
+    <v-row justify="center" class="my-5">
+      <p class="font-weight-light ">Total mines: {{totalMines}}</p>
+    </v-row>
   </v-container>
 </template>
 
