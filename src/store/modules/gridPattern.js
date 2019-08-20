@@ -1,5 +1,5 @@
 const state = {
-    dataSource: [0, 0, 0, 0, 0, "X"], //4:1
+    dataSource: [0, 0, 0, 0, "X"], //4:1
     gridPattern: [],
     pattern: [],
     totalMines: 0
@@ -86,14 +86,14 @@ const mutations = {
         state.gridPattern = pattern;
     },
     countMines(state) {
-        state.totalMines += 1
+        state.totalMines += 1;
     },
     setTotalMines(state, gridPattern) {
         let mines = [].concat(...gridPattern).filter(el => {
-            return el.bomb
-        })
-        state.pattern = mines
-        state.totalMines = mines.length
+            return el.bomb;
+        });
+        state.pattern = mines;
+        state.totalMines = mines.length;
     }
 };
 export default {

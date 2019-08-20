@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import mainGame from "./modules/mainGame";
-import gridSize from "./modules/gridSize"
+import gridSize from "./modules/gridSize";
 import gridPattern from "./modules/gridPattern";
 import gridSquare from "./modules/gridSquare";
 

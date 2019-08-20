@@ -4,7 +4,7 @@
       <template v-for="(col, col_idx) in row">
         <v-hover v-slot:default="{ hover }" :key="col_idx">
           <v-col
-            @click.left.prevent="openSquare({row: row_idx, col: col_idx})"
+            @click.left.prevent="openSquare({row: row_idx, col: col_idx}), winningCheck()"
             @click.right.prevent="flagSquare({row: row_idx, col: col_idx})"
           >
             <v-card
@@ -49,7 +49,7 @@ export default {
     ...mapActions({
       createMinesPattern: "gridPattern/createMinesPattern"
     }),
-    ...mapActions("gridSquare", ["openSquare", "flagSquare"])
+    ...mapActions("gridSquare", ["openSquare", "flagSquare", "winningCheck"])
   },
   filters: {
     numberFilter: value => {

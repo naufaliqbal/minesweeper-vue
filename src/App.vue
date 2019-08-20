@@ -17,6 +17,7 @@
     <v-content class="my-5">
       <grid-menu />
       <main-grid />
+      <win-dialog />
     </v-content>
   </v-app>
 </template>
@@ -24,12 +25,14 @@
 <script>
 import GridMenu from "./components/GridMenu";
 import MainGrid from "./components/MainGrid";
+import WinDialog from "./components/WinDialog";
 
 export default {
   name: "App",
   components: {
     GridMenu,
-    MainGrid
+    MainGrid,
+    WinDialog
   }
 };
 </script>

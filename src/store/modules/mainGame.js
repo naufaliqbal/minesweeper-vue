@@ -1,9 +1,13 @@
 const state = {
-    lose: false
+    lose: false,
+    win: false
 };
 const getters = {
     isLose(state) {
         return state.lose;
+    },
+    isWin(state) {
+        return state.win;
     }
 };
 const actions = {
@@ -14,7 +18,7 @@ const actions = {
 };
 const mutations = {
     restartGame(state, rootState) {
-        state.lose = false;
+        state.win = false;
     }
 };
 export default {
