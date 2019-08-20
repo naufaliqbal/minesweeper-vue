@@ -1,9 +1,9 @@
 <template>
-  <div class="text-center my-5">
-    <span class="font-weight-light mx-5">Select Grid Size:</span>
+  <div class="size px-3">
+    <p class="mb-1">Size</p>
     <v-menu bottom origin="top center" transition="scale-transition" :offset-y="true">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on" v-text="buttonText"></v-btn>
+        <v-btn text color="primary" v-on="on" v-text="buttonText" class="font-weight-bold headline"></v-btn>
       </template>
       <v-list>
         <v-list-item
@@ -22,10 +22,10 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters("gridSizeDropdown", ["buttonText", "sizeLists"])
+    ...mapGetters("gridSize", ["buttonText", "sizeLists"])
   },
   methods: {
-    ...mapActions("gridSizeDropdown", ["setGridSize"]),
+    ...mapActions("gridSize", ["setGridSize"]),
     ...mapActions("gridPattern", ["createMinesPattern"])
   }
 };

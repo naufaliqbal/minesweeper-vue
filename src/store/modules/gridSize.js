@@ -14,7 +14,7 @@ const getters = {
         }
         return state.sizes[0] + " x " + state.sizes[0];
     },
-    gridSize(state) {
+    size(state) {
         if (state.isSelected) {
             return state.gridSize;
         }

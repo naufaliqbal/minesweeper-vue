@@ -10,7 +10,7 @@ const getters = {
         return state.flagIcon
     },
     pattern(state, getters, { gridPattern }) {
-        return gridPattern.minesPattern;
+        return gridPattern.gridPattern;
     }
 }
 const actions = {
@@ -19,6 +19,8 @@ const actions = {
         if (!pattern[row] || !pattern[row][col]) return
 
         let squareTarget = pattern[row][col]
+        // flagged or lose
+        if (squareTarget.flagged || rootState.mainGame.lose) return
         // nol
         if (squareTarget.data === 0) {
             if (squareTarget.show) return
@@ -32,6 +34,7 @@ const actions = {
     },
     flagSquare({ getters, commit, rootState }, { row, col }) {
         let squareTarget = getters.pattern[row][col];
+        if (squareTarget.show || rootState.mainGame.lose) return
         commit("changeSquareFlagged", { squareTarget: squareTarget, rootState: rootState });
     },
     floodFillSquare({ dispatch, commit }, { squareTarget, row, col }) {
@@ -54,9 +57,10 @@ const mutations = {
     },
     endGame(_, rootState) {
         rootState.mainGame.lose = true
-    },
-    decreaseTotalMines(_, rootState) {
-        rootState.gridPattern.totalMines -= 1
+        let minesPattern = rootState.gridPattern.pattern
+        minesPattern.map(el => {
+            el.show = true
+        })
     }
 };
 

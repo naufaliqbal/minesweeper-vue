@@ -1,11 +1,12 @@
 const state = {
-    dataSource: [0, 0, 0, 0, "X"], //4:1
-    minesPattern: [],
+    dataSource: [0, 0, 0, 0, 0, "X"], //4:1
+    gridPattern: [],
+    pattern: [],
     totalMines: 0
 };
 const getters = {
-    getMinesPattern(state) {
-        return state.minesPattern;
+    pattern(state) {
+        return state.gridPattern;
     },
     totalMines(state) {
         return state.totalMines;
@@ -13,31 +14,27 @@ const getters = {
 };
 const actions = {
     async createMinesPattern({ rootGetters, dispatch, commit }, size) {
-        let gridSize = size ? size : rootGetters["gridSizeDropdown/gridSize"];
-        let minesPattern = new Array();
+        let gridSize = size ? size : rootGetters["gridSize/size"];
+        let gridPattern = new Array();
 
         for (let rowIdx = 0; rowIdx < gridSize; rowIdx++) {
             let subPattern = await dispatch("createMinesSubPattern",
                 {
                     gridSize: gridSize,
                     rowIdx: rowIdx,
-                    minesPattern: minesPattern
+                    gridPattern: gridPattern
                 });
-            minesPattern.push(subPattern);
+            gridPattern.push(subPattern);
         }
-        commit("setMinesPattern", minesPattern);
+        commit("setMinesPattern", gridPattern);
+        commit("setTotalMines", gridPattern);
     },
-    async createMinesSubPattern({ state, commit }, { gridSize, rowIdx, minesPattern }) {
+    async createMinesSubPattern({ state, commit }, { gridSize, rowIdx, gridPattern }) {
         let subPattern = new Array();
         for (let colIdx = 0; colIdx < gridSize; colIdx++) {
             // get random number
             let random = Math.floor(Math.random() * state.dataSource.length);
             let source = state.dataSource[random];
-
-            // count the mines
-            if(typeof source === "string") {
-                commit("countMines")
-            }
 
             // change inserted data based on previous inserted data or vice versa
             // if previous data value is "X" or "bomb", add the inserted data
@@ -51,26 +48,26 @@ const actions = {
 
             // same method, but for previous row
             if (rowIdx > 0) {
-                let prevUpperLeft = minesPattern[rowIdx - 1][colIdx - 1];
-                let prevUpperRight = minesPattern[rowIdx - 1][colIdx + 1];
-                let prevUpperCenter = minesPattern[rowIdx - 1][colIdx];
+                let prevUpperLeft = gridPattern[rowIdx - 1][colIdx - 1];
+                let prevUpperRight = gridPattern[rowIdx - 1][colIdx + 1];
+                let prevUpperCenter = gridPattern[rowIdx - 1][colIdx];
 
                 if (prevUpperLeft) {
                     let prevUpperLeftData = prevUpperLeft.data;
                     typeof source === "string"
-                        ? typeof prevUpperLeftData === "number" ? minesPattern[rowIdx - 1][colIdx - 1].data = prevUpperLeftData + 1 : prevUpperLeftData
+                        ? typeof prevUpperLeftData === "number" ? gridPattern[rowIdx - 1][colIdx - 1].data = prevUpperLeftData + 1 : prevUpperLeftData
                         : typeof prevUpperLeftData === "string" ? source += 1 : source;
                 }
                 if (prevUpperRight) {
                     let prevUpperRightData = prevUpperRight.data;
                     typeof source === "string"
-                        ? typeof prevUpperRightData === "number" ? minesPattern[rowIdx - 1][colIdx + 1].data = prevUpperRightData + 1 : prevUpperRightData
+                        ? typeof prevUpperRightData === "number" ? gridPattern[rowIdx - 1][colIdx + 1].data = prevUpperRightData + 1 : prevUpperRightData
                         : typeof prevUpperRightData === "string" ? source += 1 : source;
                 }
                 if (prevUpperCenter) {
                     let prevUpperCenterData = prevUpperCenter.data;
                     typeof source === "string"
-                        ? typeof prevUpperCenterData === "number" ? minesPattern[rowIdx - 1][colIdx].data = prevUpperCenterData + 1 : prevUpperCenterData
+                        ? typeof prevUpperCenterData === "number" ? gridPattern[rowIdx - 1][colIdx].data = prevUpperCenterData + 1 : prevUpperCenterData
                         : typeof prevUpperCenterData === "string" ? source += 1 : source;
                 }
             }
@@ -86,10 +83,17 @@ const actions = {
 };
 const mutations = {
     setMinesPattern(state, pattern) {
-        state.minesPattern = pattern;
+        state.gridPattern = pattern;
     },
     countMines(state) {
         state.totalMines += 1
+    },
+    setTotalMines(state, gridPattern) {
+        let mines = [].concat(...gridPattern).filter(el => {
+            return el.bomb
+        })
+        state.pattern = mines
+        state.totalMines = mines.length
     }
 };
 export default {

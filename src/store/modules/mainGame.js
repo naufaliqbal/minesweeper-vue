@@ -7,15 +7,14 @@ const getters = {
     }
 };
 const actions = {
-    restartGame({ commit, rootState }) {
-        commit("restartGame", rootState);
+    restartGame({ commit  }) {
+        commit("restartGame");
     },
     
 };
 const mutations = {
     restartGame(state, rootState) {
         state.lose = false;
-        rootState.gridPattern.totalMines = 0;
     }
 };
 export default {

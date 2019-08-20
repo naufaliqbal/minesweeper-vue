@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import mainGame from "./modules/mainGame";
-import gridSizeDropdown from "./modules/gridSizeDropdown";
+import gridSize from "./modules/gridSize"
 import gridPattern from "./modules/gridPattern";
 import gridSquare from "./modules/gridSquare";
 
@@ -13,7 +13,7 @@ export default new Vuex.Store({
   strict: debug,
   modules: {
     mainGame,
-    gridSizeDropdown,
+    gridSize,
     gridPattern,
     gridSquare
   }

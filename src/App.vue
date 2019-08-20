@@ -15,24 +15,21 @@
     </v-app-bar>
 
     <v-content class="my-5">
-      <grid-size-dropdown />
+      <grid-menu />
       <main-grid />
-      <game-dialog />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import GridSizeDropdown from "./components/GridSizeDropdown";
+import GridMenu from "./components/GridMenu";
 import MainGrid from "./components/MainGrid";
-import GameDialog from "./components/GameDialog";
 
 export default {
   name: "App",
   components: {
-    GridSizeDropdown,
-    MainGrid,
-    GameDialog
+    GridMenu,
+    MainGrid
   }
 };
 </script>
