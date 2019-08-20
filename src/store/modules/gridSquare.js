@@ -14,22 +14,37 @@ const getters = {
     }
 }
 const actions = {
-    openSquare({ getters, commit, rootState }, { row, col }) {
-        let squareTarget = getters.pattern[row][col];
-        commit("changeSquareShow", squareTarget);
+    openSquare({ getters, commit, rootState, dispatch }, { row, col }) {
+        let pattern = getters.pattern
+        if (!pattern[row] || !pattern[row][col]) return
 
+        let squareTarget = pattern[row][col]
+        // nol
+        if (squareTarget.data === 0) {
+            if (squareTarget.show) return
+            dispatch("floodFillSquare", { squareTarget: squareTarget, row: row, col: col })
+        }
+        // bomb
         if (squareTarget.bomb) {
             commit("endGame", rootState)
         }
+        commit("changeSquareShow", squareTarget)
     },
     flagSquare({ getters, commit }, { row, col }) {
         let squareTarget = getters.pattern[row][col];
         commit("changeSquareFlagged", squareTarget);
+    },
+    floodFillSquare({ dispatch, commit }, { squareTarget, row, col }) {
+        commit("changeSquareShow", squareTarget)
+        dispatch("openSquare", { row: row, col: col + 1 })
+        dispatch("openSquare", { row: row, col: col - 1 })
+        dispatch("openSquare", { row: row + 1, col: col })
+        dispatch("openSquare", { row: row - 1, col: col })
     }
 };
-const mutations =  {
+const mutations = {
     changeSquareShow(_, squareTarget) {
-        squareTarget.show = true; 
+        squareTarget.show = true;
     },
     changeSquareFlagged(_, squareTarget) {
         squareTarget.flagged = !squareTarget.flagged;

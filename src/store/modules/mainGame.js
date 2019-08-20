@@ -1,25 +1,25 @@
 const state = {
     lose: false
-}
+};
 const getters = {
     isLose(state) {
-        return state.lose
+        return state.lose;
     }
-}
+};
 const actions = {
     restartGame({ commit }) {
-        commit("restartGame")
+        commit("restartGame");
     }
-}
+};
 const mutations = {
     restartGame(state) {
-        state.lose = false
+        state.lose = false;
     }
-}
+};
 export default {
     namespaced: true,
     state,
     getters,
     actions,
     mutations
-}
+};
