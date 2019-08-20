@@ -9,7 +9,7 @@
         <v-list-item
           v-for="(size, index) in sizeLists"
           :key="index"
-          @click="createMinesPattern(size), setGridSize(size)"
+          @click="createMinesPattern(size), setGridSize(size), restartGame()"
         >
           <v-list-item-title>{{ size + " x " + size }}</v-list-item-title>
         </v-list-item>
@@ -25,8 +25,11 @@ export default {
     ...mapGetters("gridSize", ["buttonText", "sizeLists"])
   },
   methods: {
-    ...mapActions("gridSize", ["setGridSize"]),
-    ...mapActions("gridPattern", ["createMinesPattern"])
+    ...mapActions({
+      restartGame: "mainGame/restartGame",
+      setGridSize: "gridSize/setGridSize",
+      createMinesPattern: "gridPattern/createMinesPattern"
+    })
   }
 };
 </script>
