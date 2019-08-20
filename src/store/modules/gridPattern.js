@@ -1,10 +1,14 @@
 const state = {
     dataSource: [0, 0, 0, 0, "X"], //4:1
-    minesPattern: []
+    minesPattern: [],
+    totalMines: 0
 };
 const getters = {
     getMinesPattern(state) {
         return state.minesPattern;
+    },
+    totalMines(state) {
+        return state.totalMines;
     }
 };
 const actions = {
@@ -23,12 +27,15 @@ const actions = {
         }
         commit("setMinesPattern", minesPattern);
     },
-    async createMinesSubPattern({ state }, { gridSize, rowIdx, minesPattern }) {
+    async createMinesSubPattern({ state, commit }, { gridSize, rowIdx, minesPattern }) {
         let subPattern = new Array();
         for (let colIdx = 0; colIdx < gridSize; colIdx++) {
             // get random number
             let random = Math.floor(Math.random() * state.dataSource.length);
             let source = state.dataSource[random];
+
+            // count the mines
+            if(typeof source === "string") commit("countMines")
 
             // change inserted data based on previous inserted data or vice versa
             // if previous data value is "X" or "bomb", add the inserted data
@@ -78,6 +85,9 @@ const actions = {
 const mutations = {
     setMinesPattern(state, pattern) {
         state.minesPattern = pattern;
+    },
+    countMines(state) {
+        state.totalMines += 1
     }
 };
 export default {

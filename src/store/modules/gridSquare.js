@@ -30,9 +30,10 @@ const actions = {
         }
         commit("changeSquareShow", squareTarget)
     },
-    flagSquare({ getters, commit }, { row, col }) {
+    flagSquare({ getters, commit, rootState }, { row, col }) {
         let squareTarget = getters.pattern[row][col];
         commit("changeSquareFlagged", squareTarget);
+        commit("decreaseTotalMines", rootState);
     },
     floodFillSquare({ dispatch, commit }, { squareTarget, row, col }) {
         commit("changeSquareShow", squareTarget)
@@ -51,6 +52,9 @@ const mutations = {
     },
     endGame(_, rootState) {
         rootState.mainGame.lose = true
+    },
+    decreaseTotalMines(_, rootState) {
+        rootState.gridPattern.totalMines -= 1
     }
 };
 

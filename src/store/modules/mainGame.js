@@ -9,7 +9,8 @@ const getters = {
 const actions = {
     restartGame({ commit }) {
         commit("restartGame");
-    }
+    },
+
 };
 const mutations = {
     restartGame(state) {

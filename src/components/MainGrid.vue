@@ -24,6 +24,7 @@
         </v-hover>
       </template>
     </v-row>
+    <span>{{totalMines}}</span>
   </v-container>
 </template>
 
@@ -36,7 +37,8 @@ export default {
   computed: {
     ...mapGetters({
       gridSize: "gridSizeDropdown/gridSize",
-      getMinesPattern: "gridPattern/getMinesPattern"
+      getMinesPattern: "gridPattern/getMinesPattern",
+      totalMines: "gridPattern/totalMines"
     }),
     ...mapGetters("gridSquare", ["bombIcon", "flagIcon"])
   },
