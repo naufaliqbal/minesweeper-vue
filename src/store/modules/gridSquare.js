@@ -79,6 +79,8 @@ const mutations = {
         minesPattern.map(el => {
             el.show = true;
         });
+        // stop time at gridTimer rootState
+        rootState.gridTimer.stopTime = true
     },
     winGame(_, rootState) {
         rootState.mainGame.win = true;

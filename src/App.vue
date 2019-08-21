@@ -2,22 +2,25 @@
   <v-app>
     <v-content class="my-5">
       <v-row justify="center">
-        <grid-menu />
+        <grid-menu-left />
         <main-grid />
+        <grid-menu-right />
       </v-row>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import GridMenu from "./components/GridMenu";
+import GridMenuLeft from "./components/GridMenuLeft";
 import MainGrid from "./components/MainGrid";
+import GridMenuRight from "./components/GridMenuRight";
 
 export default {
   name: "App",
   components: {
-    GridMenu,
-    MainGrid
+    GridMenuLeft,
+    MainGrid,
+    GridMenuRight
   }
 };
 </script>

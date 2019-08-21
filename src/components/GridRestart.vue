@@ -1,13 +1,13 @@
 <template>
-  <div class="restart px-3">
+  <v-container class="text-center">
     <p class="mb-1">Restart</p>
     <v-btn
       text
       color="warning"
       class="font-weight-bold headline"
-      @click="createMinesPattern(gridSize), setGridSize(gridSize), restartGame()"
+      @click="createMinesPattern(gridSize), setGridSize(gridSize), restartGame(), restartTime()"
     >&#x21bb;</v-btn>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -22,8 +22,9 @@ export default {
     ...mapActions({
       setGridSize: "gridSize/setGridSize",
       createMinesPattern: "gridPattern/createMinesPattern",
-      restartGame: "mainGame/restartGame"
-    })
+      restartGame: "mainGame/restartGame",
+      restartTime: "gridTimer/restartTime"
+    }),
   }
 };
 </script>

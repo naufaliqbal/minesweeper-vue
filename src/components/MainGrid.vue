@@ -29,9 +29,6 @@
         </v-hover>
       </template>
     </v-row>
-    <v-row justify="center">
-        <grid-restart />
-      </v-row>
     <v-row v-if="isWin">
       <win-dialog />
     </v-row>
@@ -40,16 +37,10 @@
 
 <script>
 import WinDialog from "./WinDialog";
-import GridRestart from "./GridRestart";
 import { mapActions, mapGetters } from "vuex";
 export default {
   beforeMount() {
     this.createMinesPattern();
-  },
-  data() {
-    return {
-      interval: null
-    };
   },
   computed: {
     ...mapGetters({
@@ -72,8 +63,7 @@ export default {
     }
   },
   components: {
-    WinDialog,
-    GridRestart
+    WinDialog
   }
 };
 </script>
@@ -93,7 +83,6 @@ $yellow: #feff00;
     background-color: $shade-color !important;
   }
 }
-
 
 .on-hover {
   background-color: $shade-color !important;
