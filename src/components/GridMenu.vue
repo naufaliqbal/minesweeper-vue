@@ -1,21 +1,21 @@
 <template>
-  <v-row class="text-center" justify="center">
+  <v-container class="text-center">
     <grid-size />
-    <grid-restart />
     <mines-left />
-  </v-row>
+    <timer />
+  </v-container>
 </template>
 
 <script>
 import GridSize from "./GridSize";
-import GridRestart from "./GridRestart";
 import MinesLeft from "./MinesLeft";
+import Timer from "./Timer";
 
 export default {
   components: {
     GridSize,
-    GridRestart,
-    MinesLeft
+    MinesLeft,
+    Timer
   }
 };
 </script>

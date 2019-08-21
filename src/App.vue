@@ -1,23 +1,10 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Minesweeper Vue</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <!-- <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>-->
-    </v-app-bar>
-
     <v-content class="my-5">
-      <grid-menu />
-      <main-grid />
-      <win-dialog />
+      <v-row justify="center">
+        <grid-menu />
+        <main-grid />
+      </v-row>
     </v-content>
   </v-app>
 </template>
@@ -25,14 +12,19 @@
 <script>
 import GridMenu from "./components/GridMenu";
 import MainGrid from "./components/MainGrid";
-import WinDialog from "./components/WinDialog";
 
 export default {
   name: "App",
   components: {
     GridMenu,
-    MainGrid,
-    WinDialog
+    MainGrid
   }
 };
 </script>
+
+<style lang="scss">
+.container {
+  width: auto;
+  margin: auto 0;
+}
+</style>

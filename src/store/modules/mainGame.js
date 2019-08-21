@@ -17,7 +17,7 @@ const actions = {
     
 };
 const mutations = {
-    restartGame(state, rootState) {
+    restartGame(state) {
         state.win = false;
         state.lose = false;
     }

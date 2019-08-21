@@ -29,19 +29,33 @@
         </v-hover>
       </template>
     </v-row>
+    <v-row justify="center">
+        <grid-restart />
+      </v-row>
+    <v-row v-if="isWin">
+      <win-dialog />
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import WinDialog from "./WinDialog";
+import GridRestart from "./GridRestart";
 import { mapActions, mapGetters } from "vuex";
 export default {
   beforeMount() {
     this.createMinesPattern();
   },
+  data() {
+    return {
+      interval: null
+    };
+  },
   computed: {
     ...mapGetters({
       gridSize: "gridSize/size",
-      pattern: "gridPattern/pattern"
+      pattern: "gridPattern/pattern",
+      isWin: "mainGame/isWin"
     }),
     ...mapGetters("gridSquare", ["bombIcon", "flagIcon"])
   },
@@ -56,6 +70,10 @@ export default {
       if (value === 0) return "";
       return value;
     }
+  },
+  components: {
+    WinDialog,
+    GridRestart
   }
 };
 </script>
@@ -76,9 +94,7 @@ $yellow: #feff00;
   }
 }
 
-.col {
-  flex-grow: 0;
-}
+
 .on-hover {
   background-color: $shade-color !important;
   cursor: pointer;

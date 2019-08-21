@@ -29,7 +29,7 @@ const actions = {
         commit("setMinesPattern", gridPattern);
         commit("setTotalMines", gridPattern);
     },
-    async createMinesSubPattern({ state, commit }, { gridSize, rowIdx, gridPattern }) {
+    async createMinesSubPattern({ state }, { gridSize, rowIdx, gridPattern }) {
         let subPattern = new Array();
         for (let colIdx = 0; colIdx < gridSize; colIdx++) {
             // get random number

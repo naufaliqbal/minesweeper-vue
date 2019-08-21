@@ -1,5 +1,5 @@
 <template>
-  <div class="size px-3">
+  <v-container>
     <p class="mb-1">Size</p>
     <v-menu bottom origin="top center" transition="scale-transition" :offset-y="true">
       <template v-slot:activator="{ on }">
@@ -15,7 +15,7 @@
         </v-list-item>
       </v-list>
     </v-menu>
-  </div>
+  </v-container>
 </template>
 
 <script>

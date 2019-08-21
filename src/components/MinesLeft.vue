@@ -1,8 +1,8 @@
 <template>
-  <div class="mines-left px-3">
+  <v-container>
     <p class="mb-1">Mines Left</p>
-    <p class="font-weight-bold headline mb-1" v-text="minesLeft"></p>
-  </div>
+    <p class="font-weight-bold headline mb-1 font-color-indigo" v-text="minesLeft"></p>
+  </v-container>
 </template>
 
 <script>
@@ -17,4 +17,7 @@ export default {
 </script>
 
 <style>
+.font-color-indigo {
+  color: #3f51b5;
+}
 </style>

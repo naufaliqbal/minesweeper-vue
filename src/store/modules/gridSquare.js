@@ -30,7 +30,10 @@ const actions = {
         if (squareTarget.bomb) {
             commit("endGame", rootState);
         }
+        // open the cell
         commit("changeSquareShow", squareTarget);
+        // set initial time
+        dispatch("setInitialTime");
     },
     flagSquare({ getters, commit, rootState }, { row, col }) {
         let squareTarget = getters.pattern[row][col];
@@ -53,6 +56,11 @@ const actions = {
             return el.data > 0 && el.show;
         });
         if (number.length == openedSquare.length) commit("winGame", rootState);
+    },
+    setInitialTime({ rootState, commit }) {
+        if (!rootState.gridTimer.initialTime) {
+            commit("setInitialTime", rootState);
+        }
     }
 };
 const mutations = {
@@ -74,6 +82,9 @@ const mutations = {
     },
     winGame(_, rootState) {
         rootState.mainGame.win = true;
+    },
+    setInitialTime(_, rootState) {
+        rootState.gridTimer.initialTime = new Date().getTime();
     }
 };
 

@@ -4,6 +4,7 @@ import mainGame from "./modules/mainGame";
 import gridSize from "./modules/gridSize";
 import gridPattern from "./modules/gridPattern";
 import gridSquare from "./modules/gridSquare";
+import gridTimer from "./modules/gridTimer";
 
 Vue.use(Vuex);
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     mainGame,
     gridSize,
     gridPattern,
-    gridSquare
+    gridSquare,
+    gridTimer
   }
 });
