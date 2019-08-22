@@ -1,6 +1,7 @@
 const state = {
     bombIcon: require("../../assets/bomb.png"),
-    flagIcon: require("../../assets/flag.png")
+    flagIcon: require("../../assets/flag.png"),
+    vueIcon: require("../../assets/logo.png")
 };
 const getters = {
     bombIcon(state) {
@@ -8,6 +9,9 @@ const getters = {
     },
     flagIcon(state) {
         return state.flagIcon;
+    },
+    vueIcon(state) {
+        return state.vueIcon;
     },
     pattern(state, getters, { gridPattern }) {
         return gridPattern.gridPattern;

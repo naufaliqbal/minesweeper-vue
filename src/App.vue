@@ -1,6 +1,9 @@
 <template>
   <v-app>
-    <v-content class="my-5">
+    <v-content>
+      <v-row>
+        <octocat />
+      </v-row>
       <v-row justify="center">
         <grid-menu-left />
         <main-grid />
@@ -14,13 +17,15 @@
 import GridMenuLeft from "./components/GridMenuLeft";
 import MainGrid from "./components/MainGrid";
 import GridMenuRight from "./components/GridMenuRight";
+import Octocat from "./components/Octocat";
 
 export default {
   name: "App",
   components: {
     GridMenuLeft,
     MainGrid,
-    GridMenuRight
+    GridMenuRight,
+    Octocat
   }
 };
 </script>

@@ -1,5 +1,9 @@
 <template>
   <v-container class="grey lighten-5">
+    <v-row justify="center" align="center">
+      <p class="display-1 my-6">Minesweeper</p>
+      <v-img width="10px" alt="Vue icon" :src="vueIcon" />
+    </v-row>
     <v-row no-gutters v-for="(row, row_idx) in pattern" :key="row_idx" justify="center">
       <template v-for="(col, col_idx) in row">
         <v-hover v-slot:default="{ hover }" :key="col_idx">
@@ -48,7 +52,7 @@ export default {
       pattern: "gridPattern/pattern",
       isWin: "mainGame/isWin"
     }),
-    ...mapGetters("gridSquare", ["bombIcon", "flagIcon"])
+    ...mapGetters("gridSquare", ["bombIcon", "flagIcon", "vueIcon"])
   },
   methods: {
     ...mapActions({
