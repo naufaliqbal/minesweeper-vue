@@ -32,9 +32,9 @@ const actions = {
                 let diff = Date.now() - state.initialTime;
                 dispatch("interval", { diff });
             }
-            if (state.stopTime) clearInterval(int)
+            if (state.stopTime) clearInterval(int);
         }, 1000);
-        return int
+        return int;
     },
     async interval({ dispatch }, { diff }) {
         let seconds = await dispatch("setSeconds", diff);
@@ -58,8 +58,8 @@ const actions = {
         return seconds;
     },
     restartTime({ dispatch, commit }) {
-        commit("restartTimeState")
-        dispatch("setInterval")
+        commit("restartTimeState");
+        dispatch("setInterval");
     }
 };
 const mutations = {
@@ -77,7 +77,7 @@ const mutations = {
             state.initialTime = 0,
             state.seconds = 0,
             state.minutes = 0,
-            state.hours = 0
+            state.hours = 0;
     }
 };
 export default {
