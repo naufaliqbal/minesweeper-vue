@@ -9,7 +9,7 @@
           <v-btn
             color="green darken-1"
             text
-            @click="restartGame(), setGridSize(gridSize), createMinesPattern(gridSize)"
+            @click="restartTime(), restartGame(), setGridSize(gridSize), createMinesPattern(gridSize)"
           >Yes</v-btn>
         </v-card-actions>
       </v-card>
@@ -30,7 +30,8 @@ export default {
     ...mapActions({
       restartGame: "mainGame/restartGame",
       setGridSize: "gridSize/setGridSize",
-      createMinesPattern: "gridPattern/createMinesPattern"
+      createMinesPattern: "gridPattern/createMinesPattern",
+      restartTime: "gridTimer/restartTime"
     })
   }
 };
@@ -41,8 +42,9 @@ export default {
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 0;
-  height: 100vh;
-  width: 100vw;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 .dialog-content {
   position: absolute;

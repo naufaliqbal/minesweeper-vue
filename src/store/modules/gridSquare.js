@@ -88,6 +88,7 @@ const mutations = {
     },
     winGame(_, rootState) {
         rootState.mainGame.win = true;
+        rootState.gridTimer.stopTime = true;
     },
     setInitialTime(_, rootState) {
         rootState.gridTimer.initialTime = new Date().getTime();
