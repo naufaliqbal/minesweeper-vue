@@ -2,7 +2,7 @@
   <v-container class="grey lighten-5">
     <v-row justify="center" align="center">
       <p class="display-1 my-6">Minesweeper</p>
-      <img width="2rem" class="ma-2" alt="Vue icon" :src="vueIcon" />
+      <v-img max-width="40px" class="ma-2" alt="Vue icon" :src="vueIcon" />
     </v-row>
     <v-row no-gutters v-for="(row, row_idx) in pattern" :key="row_idx" justify="center">
       <template v-for="(col, col_idx) in row">
@@ -118,6 +118,15 @@ $yellow: #feff00;
   }
   &.flagged-bomb {
     @include background-color($bomb: true, $flagged: true);
+  }
+}
+@media(max-width: 516px) { 
+  .container {
+    order: 1;
+    width: 100% !important;
+  }
+  .col {
+    flex-grow: 0;
   }
 }
 </style>

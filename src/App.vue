@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="min-width:360px;">
     <v-content>
       <v-row>
         <octocat />
@@ -34,5 +34,9 @@ export default {
 .container {
   width: auto;
   margin: auto 0;
+}
+.row {
+  margin-left: 0;
+  margin-right: 0;
 }
 </style>

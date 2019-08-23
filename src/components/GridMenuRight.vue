@@ -17,5 +17,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@media(max-width: 516px) { 
+  .container {
+    order: 3;
+    margin: 0;
+  }
+}
 </style>
